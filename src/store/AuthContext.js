@@ -1,4 +1,5 @@
 import react, { useState, useEffect, useCallback } from "react";
+
 let logoutTimer;
 const AuthContext = react.createContext({
     token: '',
@@ -39,7 +40,7 @@ export const AuthContextProvider = (props) => {
         setToken(null);
         localStorage.removeItem('token');
         localStorage.removeItem('expirationdate');
-        localStorage.removeItem('searchVal')
+        localStorage.removeItem('searchVal');
         if (logoutTimer) {
             clearTimeout(logoutTimer)
         }

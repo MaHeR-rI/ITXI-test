@@ -6,6 +6,7 @@ import AuthContext from '../store/AuthContext';
 const Artist = () => {
     const [data, setData] = useState('')
     const [artist, setArtist] = useState('')
+    const [notFounf,setNotFound]=useState(false)
     const { id } = useParams();
     const authCtx = useContext(AuthContext)
 
@@ -16,8 +17,11 @@ const Artist = () => {
             }
         }).then(function (response) {
             setArtist(response.data)
+            setNotFound(false)
+
         }).catch(function (error) {
-            console.log(error.message);
+            console.log(error.message)
+            setNotFound(true)
         })
         axios.get(`https://api.spotify.com/v1/artists/${id}/albums`, {
             headers: {
@@ -25,16 +29,15 @@ const Artist = () => {
             }
         }).then(function (response) {
             setData(response.data.items)
-        }).catch(function (error) {
-            console.log(error.message);
         })
-    }, [authCtx.token,id])
+    }, [authCtx.token, id])
 
     return (<div className="album-body">
-        <div className="head">
+        {artist && <div className="head">
             <h1>{artist.name}</h1>
             <span>Albums</span>
-        </div>
+        </div> }
+       {notFounf && <h1>album not found !</h1>}
         <div className='grid-section'>
             {data && data.map(album => (
                 <div className='card' key={album.id}>

@@ -4,7 +4,7 @@ import AuthContext from "../store/AuthContext"
 import { useNavigate } from "react-router-dom"
 const Login = () => {
     const CLIENT_ID = 'f5184d90a4794a38afce64f34972b328'
-    const REDIRECT_URI = 'http://localhost:3000'
+    const REDIRECT_URI = 'http://localhost:3000/'
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
     const RESPONSE_TYPE = 'token'
     const authCtx = useContext(AuthContext);
